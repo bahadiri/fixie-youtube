@@ -10,8 +10,8 @@ FEW_SHOTS = """
 Q: Show me a video with cats?
 Thought: I can recommend Youtube videos about cats that you may find interesting.
 Ask Func[search]: cats
-Func[search] says: https://www.youtube.com/shorts/WeiONy5Q9cQ
-A: You can watch https://www.youtube.com/shorts/WeiONy5Q9cQ
+Func[search] says: https://www.youtube.com/shorts/WeiONy5Q9cQ [image1]
+A: You can watch https://www.youtube.com/shorts/WeiONy5Q9cQ [image1]
 """
 agent = fixieai.CodeShotAgent(BASE_PROMPT, FEW_SHOTS)
 
@@ -35,7 +35,7 @@ def search(query: fixieai.Message) -> fixieai.Message:
         
     results = parse_results(html)
     thumbnail_uri = "https://i.ytimg.com/vi/" + results[0] + "/hq720.jpg"
-    embed = fixieai.Embed(content_type="image/png", uri=thumbnail_uri)
+    embed = fixieai.Embed(content_type="image/jpg", uri=thumbnail_uri)
     print("Thumbnail URI: " + thumbnail_uri)
     url = "https://www.youtube.com/watch?v=" + results[0]
     return fixieai.Message(text="You can watch " + url + " [image1]", embeds={"image1": embed})
