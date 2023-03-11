@@ -1,13 +1,14 @@
 import urllib.parse
 from bs4 import BeautifulSoup
 import re
+import random
 
 import fixieai
 
 BASE_PROMPT = """I am an agent that finds and recommends Youtube videos."""
 
 FEW_SHOTS = """
-Q: Show me a video with cats?
+Q: Show me a video similar to https://www.youtube.com/watch?v=Kd_rkJObFVY
 Thought: I can recommend Youtube videos about cats that you may find interesting.
 Ask Func[search]: cats
 Func[search] says: https://www.youtube.com/watch?v=WeiONy5Q9cQ [image1]
@@ -64,8 +65,9 @@ def search(query: fixieai.Message) -> fixieai.Message:
 
         
     results = parse_results(html)
-    # title = "Dogs"
+    random.shuffle(results)
     title, videoId = results[0]
+    title = "this video"
     # print(title, videoId)
     # videoId = results[0]
     thumbnail_uri = "https://i.ytimg.com/vi/" + videoId + "/hq720.jpg"
