@@ -60,14 +60,14 @@ def search(query: fixieai.Message) -> fixieai.Message:
         regex = re.compile(r"title\":{\"runs\":\[{\"text\":\"([^\"]*)")
         titles = regex.findall(html)
         
-        return videoIds
+        return list(zip(titles, videoIds))
 
         
     results = parse_results(html)
-    title = "Dogs"
-    # title, videoId = results[0]
+    # title = "Dogs"
+    title, videoId = results[0]
     # print(title, videoId)
-    videoId = results[0]
+    # videoId = results[0]
     thumbnail_uri = "https://i.ytimg.com/vi/" + videoId + "/hq720.jpg"
     embed = fixieai.Embed(content_type="image/jpg", uri=thumbnail_uri)
     url = "https://www.youtube.com/watch?v=" + videoId
