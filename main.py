@@ -10,11 +10,27 @@ FEW_SHOTS = """
 Q: Show me a video with cats?
 Thought: I can recommend Youtube videos about cats that you may find interesting.
 Ask Func[search]: cats
-Func[search] says: https://www.youtube.com/shorts/WeiONy5Q9cQ [image1]
-A: You can watch https://www.youtube.com/shorts/WeiONy5Q9cQ [image1]
+Func[search] says: https://www.youtube.com/watch?v=WeiONy5Q9cQ [image1]
+A: You can watch https://www.youtube.com/watch?v=WeiONy5Q9cQ [image1]
+
+Q: Recommend me a video on dogs
+Thought: I can recommend Youtube videos about cots that you may find interesting.
+Ask Func[search]: dogs
+Func[search] says: https://www.youtube.com/watch?v=59rADhtMzWc [image1]
+A: You can watch https://www.youtube.com/watch?v=59rADhtMzWc [image1]
+
+Q: Recommend me a query based on the video.
+Ask Func[createQuery]: https://www.youtube.com/watch?v=59rADhtMzWc
+Func[createQuery] says: dogs and cows
+A: dogs and cows
 """
 agent = fixieai.CodeShotAgent(BASE_PROMPT, FEW_SHOTS)
 
+@agent.register_func
+def createQuery(url: str) -> fixieai.Message:
+    # TODO: extract a textual query based on the provided URL
+    query = fixieai.Message(text)
+    return query
 
 @agent.register_func
 def search(query: fixieai.Message) -> fixieai.Message:
