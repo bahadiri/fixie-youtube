@@ -10,4 +10,4 @@ description: |
   Tags: funcs, video, youtube, media
 more_info_url: "https://github.com/bahadiri/fixie-youtube"
 entry_point: main:agent
-public: false
+public: true
