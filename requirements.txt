@@ -1,1 +1,2 @@
-beautifulsoup4
+fixieai ~= 1.0.1
+boto3
